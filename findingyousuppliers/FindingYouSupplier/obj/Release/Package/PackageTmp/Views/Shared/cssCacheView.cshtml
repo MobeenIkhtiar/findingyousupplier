@@ -1,0 +1,55 @@
+﻿
+@Styles.Render("~/Template/css")
+<link async href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+@Scripts.RenderFormat(@"<script src="" {0}"" async></script>", "~/bundles/jquery")
+
+@*@Scripts.Render("~/bundles/jquery");*@
+<style>
+    .footer-widget > ul > li > a {
+        color: white;
+    }
+
+        .footer-widget > ul > li > a:hover {
+            color: #ff0000;
+        }
+
+    .footer-widget > h5 {
+        color: white;
+    }
+
+    .footer-bg {
+        background-color: #0612A6;
+    }
+
+    #cont > a {
+        color: white;
+        font-weight: bold;
+    }
+
+        #cont > a:hover {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+    .dropdown-menu > li > a {
+        color: #003366 !important;
+    }
+
+    #top-bar > a {
+        color: white;
+    }
+
+        #top-bar > a:hover {
+            color: #ff0000;
+        }
+
+    .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev, .carousel-control .icon-next {
+        margin-top: 85px !important;
+    }
+
+    @@media only screen and (max-width: 500px) {
+        .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev, .carousel-control .icon-next {
+            margin-top: 5px !important;
+        }
+    }
+</style>

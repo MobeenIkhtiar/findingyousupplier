@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "EmailVerification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .footer {
+        bottom: 0;
+        width: 100%;
+        
+    }
+</style>
+<section>
+    <br /><br /><br /><br />
+    <div class="container">
+        <br /><br /><br />
+        <div class="row">
+            <div>                
+                <h1 class="text-center"><strong>Email Verification</strong></h1>
+                <div class="col-md-offset-4 col-md-4">
+                    <br /><br />
+                    <center><p><strong style="color: #CE1620;">@ViewBag.message</strong></p></center>
+                    <form action="@Url.Action("PostEmailVerification","Auth")" method="post">
+                        <br />
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input onchange="return trim(this)" type="email" name="Email" class="form-control" placeholder="Email" />
+                        </div>
+                        <center>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-default">Submit</button>
+                            </div>
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br /><br /><br /><br /><br />
+<script>
+    function trim(el) {
+        el.value = el.value.
+            replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+            replace(/[ ]{2,}/gi, " ").       // replaces multiple spaces with one space
+            replace(/\n +/, "\n");           // Removes spaces after newlines
+        return;
+    }
+</script>

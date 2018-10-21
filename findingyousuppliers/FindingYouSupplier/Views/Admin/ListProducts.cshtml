@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "List Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using FindingYouSupplier.Models
+@using FindingYouSupplier.Helping_Classes
+<div class="main-content-inner">
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="@Url.Action("Index","Admin")">Dashboard</a>
+            </li>
+            <li class="active">List Products</li>
+        </ul><!-- /.breadcrumb -->
+
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="header smaller lighter blue"><strong>List of Products</strong></h3>
+                <div class="clearfix">
+                    <div class="pull-right tableTools-container"></div>
+                </div>
+                <div class="table-responsive">
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Minimum Order</th>
+                                <th>Delievery Charges</th>
+                                <th>Description</th>
+                                <th>Supplier Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Product u in ViewBag.products)
+                            {
+                                <tr>
+                                    <td><strong>@u.Name</strong></td>
+                                    <td>@u.Category.Name</td>
+                                    <td>@u.Minimum_Order</td>
+                                    <td>@u.Delievery_Charges</td>
+                                    <td>@u.Description</td>
+                                    <td>@u.User.Name</td>
+                                    @if (u.Is_Authorized == 0)
+                                    {
+                                        <td>
+                                            <a href="@Url.Action("Product", "Home", new { Id = StringCipher.Base64Encode((u.Id).ToString()) })" class="btn btn-primary">View Product</a>
+                                            <a href="@Url.Action("ToggleProduct", "Admin", new { Id = u.Id })" class="btn btn-success">Authorize</a>
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <a href="@Url.Action("Product", "Home", new { Id = StringCipher.Base64Encode((u.Id).ToString()) })" class="btn btn-primary">View Product</a>
+                                            <a href="@Url.Action("ToggleProduct", "Admin", new{ Id = u.Id })" class="btn btn-danger">Unauthorize</a>
+                                        </td>
+
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+
+<!-- page specific plugin scripts -->
+<script src="~/Content/Admin/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/Admin/assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="~/Content/Admin/assets/js/dataTables.buttons.min.js"></script>
+<script src="~/Content/Admin/assets/js/dataTables.select.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    //initiate dataTables plugin
+    var myTable = $('#dynamic-table').DataTable({
+        // bAutoWidth: true,
+        "bSort": false,
+        "bPaginate": true,
+    });
+
+</script>
+
+
+

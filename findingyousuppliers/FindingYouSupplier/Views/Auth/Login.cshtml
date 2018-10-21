@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+    <br />
+    <br />
+        <div class="row">
+            @if (ViewBag.Id == "0")
+            {
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/Content/Images/Entreprenuer/1.jpg" width="290" height="435" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/Content/Images/Entreprenuer/2.jpg" width="290" height="435" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/Content/Images/Entreprenuer/3.jpg" width="290" height="435" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/Content/Images/Trade Suppliers/1.jpg" width="300" height="450" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/Content/Images/Trade Suppliers/2.jpg" width="300" height="450" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/Content/Images/Trade Suppliers/3.jpg" width="300" height="450" />
+                    </div>
+                </div>
+            }
+        </div>  
+        <br />
+        <div class="row">
+            <p class="text-center" style="font-size: 20px; color: #ff0000;"><strong>@ViewBag.message</strong></p>
+            <br />
+            <div class="col-md-offset-4 col-md-4">
+                @if (ViewBag.Id == "0")
+                {
+                <h3 class="text-center">Enterpreneur <strong>Login</strong></h3>
+                }
+                else
+                {
+                    <h3 class="text-center">Trade Supplier <strong>Login</strong></h3>
+                }
+                <form class="form" action="@Url.Action("PostLogin", "Auth")" method="post">
+                    <input type="hidden" name="Id" value="@ViewBag.Id" />
+                    <div class="form-group">
+                        <label class="control-label">
+                            Email:
+                        </label>
+                        <input onchange="return trim(this)" type="email" name="Email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Password:
+                        </label>
+                        <input onchange="return trim(this)" type="password" name="Password" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </div>
+                </form>
+                <a href="@Url.Action("EmailVerification", "Auth")"><strong>Forget Password?</strong></a>
+            </div>
+          
+            <div class="col-md-4">
+                
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function trim(el) {
+        el.value = el.value.
+            replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+            replace(/[ ]{2,}/gi, " ").       // replaces multiple spaces with one space
+            replace(/\n +/, "\n");           // Removes spaces after newlines
+        return;
+    }
+</script>

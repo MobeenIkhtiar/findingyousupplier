@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "View Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FindingYouSupplier.Models
+@using FindingYouSupplier.Helping_Classes
+@model List<FindingYouSupplier.Models.Product>
+<style>
+    .list-group {
+        border-radius: 0px !important;
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .list-group .active {
+        background-color: #0612A6;
+        color: white;
+        border-color: #0612A6;
+    }
+
+        .list-group .active:hover {
+            background-color: #000;
+            color: white;
+            border-color: #000;
+        }
+</style>
+<br />
+<br />
+<div class="container">
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="@Url.Action("Index", "Account")" class="list-group-item active">
+                    <h4><strong>My Account</strong></h4>
+                </a>
+                <a href="@Url.Action("EditProfile", "Account")" class="list-group-item">Edit Profile</a>
+                @{
+                    SessionDTO sdto = new SessionDTO();
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("EditCompanyProfile", "Account")" class="list-group-item">Edit Comapny Profile</a>
+                }
+                <a href="@Url.Action("ChangePassword", "Account")" class="list-group-item">Change Password</a>
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("AddProduct", "Account")" class="list-group-item">Add Product</a>
+                    <a href="@Url.Action("ViewProducts", "Account")" class="list-group-item">View Products</a>
+                }
+                @if (sdto.getRole() == 0)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="table-responsive">
+                <table id="myTable" class="table-striped">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Minimum Order</th>
+                            <th>Delievery Charges</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Product p in Model.ToList())
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content("http://findingyousuppliers.com//" + p.Images.FirstOrDefault().Path)" alt="Image" width="100" height="100" />
+                                </td>
+                                <td>@p.Name</td>
+                                <td>@p.Category.Name</td>
+                                <td>@p.Minimum_Order</td>
+                                <td>@p.Delievery_Charges</td>
+                                @if (p.Is_Authorized == 0)
+                                {
+                                    <td style="color: red;">Pending</td>
+                                }
+                                else
+                                {
+                                    <td style="color: dodgerblue;">Approved</td>
+                                }
+
+                                <td>
+                                    <a href="@Url.Action("EditProduct", "Account", new { Id = p.Id })"><span class="fa fa-pencil fa-2x"></span></a>
+                                    <a href="#"><span class="fa fa-trash fa-2x"></span></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+        $('#myTable').DataTable({
+
+            "bSort": false,
+        });
+</script>
+

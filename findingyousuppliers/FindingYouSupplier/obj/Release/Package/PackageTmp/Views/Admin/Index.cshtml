@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Admin Panel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-content-inner">
+    <div class="page-content">
+        <div class="page-header">
+            <h1>
+                <strong>Dashboard</strong>
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    overview &amp; stats
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <br /><br /><br />
+
+                <div class="row">
+                    <div class="space-12"></div>
+                    <div class="col-sm-12 infobox-container">
+                        <div class="infobox infobox-green">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-users"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">@ViewBag.totalbuyersCount</span>
+                                <div class="infobox-content">Total Entrepreneurs</div>
+                            </div>
+                        </div>
+
+                        <div class="infobox infobox-blue">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-database"></i>
+                            </div>
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">@ViewBag.totalactivebuyersCount</span>
+                                <div class="infobox-content">Authorized Entrepreneurs</div>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                    </div>
+                </div><!-- /.row -->
+
+                <div class="row">
+                    <div class="space-12"></div>
+                    <div class="col-sm-12 infobox-container">
+                        <div class="infobox infobox-green">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-users"></i>
+                            </div>
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">@ViewBag.totaluksuppliersCount</span>
+                                <div class="infobox-content">Total UK Trade Suppliers</div>
+                            </div>
+                        </div>
+                        <div class="infobox infobox-blue">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-database"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">@ViewBag.totalactiveuksuppliersCount</span>
+                                <div class="infobox-content">Authorized UK Trade Suppliers</div>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                    </div>
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="space-12"></div>
+                    <div class="col-sm-12 infobox-container">
+                        <div class="infobox infobox-green">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-users"></i>
+                            </div>
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">@ViewBag.totalinternationalsuppliersCount</span>
+                                <div class="infobox-content">Total International Trade Suppliers</div>
+                            </div>
+                        </div>
+                        <div class="infobox infobox-blue">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-database"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">@ViewBag.totalactiveinternationalsuppliersCount</span>
+                                <div class="infobox-content">Authorized International Trade Suppliers</div>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                    </div>
+                </div><!-- /.row -->
+                <!-- PAGE CONTENT ENDS -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+

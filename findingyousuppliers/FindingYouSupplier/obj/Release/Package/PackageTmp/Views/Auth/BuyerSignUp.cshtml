@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Buyer Sign Up Video";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+<link href="~/Content/css-demo-page.css" rel="stylesheet" />
+<link href="~/Content/grt-youtube-popup.css" rel="stylesheet" />
+<style>
+    .footer {
+        bottom: 0;
+        width: 100%;
+        position: absolute;
+    }
+</style>
+<br /><br /><br /><br /><br />
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <h3 class="text-center">@ViewBag.Message</h3>
+    </div>
+</div>
+<br /><br /><br />
+<div class="text-center">
+    <a class="btn btn-default" href="@Url.Action("Index", "Home")">Home</a>
+</div>

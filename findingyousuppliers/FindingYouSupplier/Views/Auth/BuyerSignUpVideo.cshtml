@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Buyer Sign Up Video";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+<link href="~/Content/css-demo-page.css" rel="stylesheet" />
+<link href="~/Content/grt-youtube-popup.css" rel="stylesheet" />
+<style>
+    .footer {
+        bottom: 0;
+        width: 100%;
+        position: absolute;
+    }
+</style>
+<br /><br /><br /><br /><br />
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <h3 class="text-center">@ViewBag.Message</h3>
+    </div>
+</div>
+<br /><br /><br />
+<div class="text-center">
+    <a class="btn btn-default" href="@Url.Action("Index", "Home")">Home</a>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <form method="post" action="@Url.Action("PostBuyerSignUp", "Auth")">
+                <input type="hidden" name="mail" value="@ViewBag.mail" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label><input type="radio" name="option" value="1" />Option 1</label>
+                        <p>
+                            *	We would advise you on where and how to register your domain and hosting<br />
+                            •	Set up your fully functional eccommerce store with upto 100 products and integrated payment options so you are ready to start selling.<br />
+                            •	This package would cost £499
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="radio" name="option" value="2" />Option 2</label>
+                        <p>
+                            We would advise you on where and how to register your domain and hosting<br />
+                            ◦	Set up your fully functional eccommerce store with upto 100 products and integrated payment options so you are ready to start selling.<br />
+                            ◦	Set up your email marketing for you<br />
+                            ◦	Set up your email marketing done for you templates<br />
+                            ◦	Set up your social media<br />
+                            ◦	This package would cost £799<br />
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="radio" name="option" value="3" />Option 3</label>
+                        <p>
+                            No Thank you, I need no more further assistance
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="~/Scripts/grtYoutubeBuyerPart2.js"></script>
+<script>
+    $(document).ready(function () {
+
+    })
+</script>

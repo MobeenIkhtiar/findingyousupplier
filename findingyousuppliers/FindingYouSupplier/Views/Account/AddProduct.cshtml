@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Add Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FindingYouSupplier.Models
+@using FindingYouSupplier.Helping_Classes
+<style>
+    .list-group {
+        border-radius: 0px !important;
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .list-group .active {
+        background-color: #0612A6;
+        color: white;
+        border-color: #0612A6;
+    }
+
+        .list-group .active:hover {
+            background-color: #000;
+            color: white;
+            border-color: #000;
+        }
+</style>
+<br />
+<br />
+<div class="container">
+    <br />
+    <br />
+    <p class="text-center" style="font-size: 22px; color: #82CA9C;"><strong>@ViewBag.message</strong></p>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="@Url.Action("Index", "Account")" class="list-group-item active">
+                    <h4><strong>My Account</strong></h4>
+                </a>
+                <a href="@Url.Action("EditProfile", "Account")" class="list-group-item">Edit Profile</a>
+                @{
+                    SessionDTO sdto = new SessionDTO();
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                <a href="@Url.Action("EditCompanyProfile", "Account")" class="list-group-item">Edit Comapny Profile</a>
+                }
+                <a href="@Url.Action("ChangePassword", "Account")" class="list-group-item">Change Password</a>                
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("AddProduct", "Account")" class="list-group-item">Add Product</a>
+                    <a href="@Url.Action("ViewProducts", "Account")" class="list-group-item">View Products</a>
+                }
+                @if (sdto.getRole() == 0)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h2>
+                <strong>
+                    Add Product
+                </strong>
+            </h2>
+            <div class="col-md-6">
+                <form action="@Url.Action("SaveProduct", "Account")" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="control-label">Name:</label>
+                        <input onchange="return trim(this)" type="text" name="Name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Category:</label>
+                        <select name="Category_Id" class="form-control" required>
+                            <option value="">--Select--</option>
+                            @foreach (Category c in ViewBag.categories)
+                            {
+                                if (c.Category_Id == null)
+                                {
+                                    <option style="color: grey; font-weight: bold;" disabled>@c.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@c.Id">@c.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Minimum Order:</label>
+                        <input onchange="return trim(this)" type="number" name="Minimum_Order" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Delievery Charges:</label>
+                        <input onchange="return trim(this)" type="number" name="Delievery_Charges" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description:</label>
+                        <textarea onchange="return trim(this)" rows="5" name="Description" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Image:</label>
+                        <input style="width:200px;" type="file" name="file" required /></>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn-default">Add</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
