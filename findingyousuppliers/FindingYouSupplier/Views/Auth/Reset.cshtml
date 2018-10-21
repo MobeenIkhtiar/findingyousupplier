@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Reset Password";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ }
+        <style>
+            .footer {
+                bottom: 0;
+                width: 100%;
+                /*position: absolute;*/
+            }
+        </style>
+        <section>
+            <div class="container">
+                <br /><br />                
+                <div class="row">
+                    <h1 class="text-center"><strong>Reset Password</strong></h1>
+                    <div class="col-md-offset-4 col-md-4">
+                        <br /><br />
+                        <center><p><strong style="color: #CE1620;">@ViewBag.message</strong></p></center>
+                        <form method="post" action="@Url.Action("ResetPassword", "Auth")">
+                            <br />
+                            <input type="hidden" name="Email" value="@ViewBag.Email" />
+                            <div class="form-group">
+                                <label>New Password:</label>
+                                <input onchange="return trim(this)" type="password" name="Password" class="form-control" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password:</label>
+                                <input onchange="return trim(this)" type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                            </div>
+                            <div class="form-group">
+                                <center><button type="submit" class="form-control btn btn-default">Submit</button></center>
+                            </div>
+                        </form>
+                    </div>
+                </div>                
+            </div>            
+            @*<div class="footer" style="background-color:#454545; padding:10px; color:white;">
+                <div class="conatiner">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <a href="#" style="color:white;"><span class="fa fa-facebook-official fa-2x"></span></a>
+                            <a href="#" style="color:white;"><span class="fa fa-google-plus-square fa-2x"></span></a>
+                            <a href="#" style="color:white;"><span class="fa fa-instagram fa-2x"></span></a>
+                            <a href="#" style="color:white;"><span class="fa fa-twitter-square fa-2x"></span></a>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <p class="pull-right">Developed by <a target="_blank" href="http://www.ubssols.com" style="color: #82CA9C;"> UBS Solutions </a>2018</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </section>
+            <script>
+                function trim(el) {
+                    el.value = el.value.
+                        replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+                        replace(/[ ]{2,}/gi, " ").       // replaces multiple spaces with one space
+                        replace(/\n +/, "\n");           // Removes spaces after newlines
+                    return;
+                }
+            </script>
+          
+

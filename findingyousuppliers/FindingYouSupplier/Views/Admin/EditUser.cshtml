@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using FindingYouSupplier.Models
+
+<div class="main-content-inner">
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="@Url.Action("Index","Admin")">Dashboard</a>
+            </li>
+            <li class="active">Edit User</li>
+        </ul><!-- /.breadcrumb -->
+
+    </div>
+
+    <div class="page-content">
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="widget-box">
+                    <form action="@Url.Action("UpdateUser","Admin")" method="post">
+                        <input name="Id" value="@Model.Id" type="hidden" />
+                        <div class="widget-header">
+                            <h4 class="widget-title">Edit User</h4>
+                            
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <label for="id-date-picker-1">Name</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Name" value="@Model.Name" required />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+                                <label for="id-date-picker-1">Email</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        @if (ViewBag.error == null)
+                                        {
+                                            /**/
+                                        }
+                                        else
+                                        {
+                                            <label class="text-danger">@ViewBag.error</label>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onkeydown="return trim(this)" onchange="ValidateEmail()" class="form-control" id="email" type="email" value="@Model.Email"  name="Email" required />
+                                        <label id="msg"></label>
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Phone</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" value="@Model.Phone" name="Phone" required />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Website Address</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" pattern="^(https?://www?\.)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" value="@Model.Website_Address"  name="Website_Address" required />
+                                        <span>www.abc.com</span>
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Country</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" value="@Model.Country"  name="Country" required />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Company Name</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" value="@Model.Company_Name"  name="Company_Name" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Company Number</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" value="@Model.Company_Number"  name="Company_Number" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Company Address</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" value="@Model.Company_Address"  name="Company_Address" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">VAT Registration Number</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" value="@Model.VAT_Registration_Number"  name="VAT_Registration_Number" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Role</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <select class="form-control" name="Role" required>
+                                            <option selected value=""> Select Role</option>
+                                            @if (@Model.Role == 0)
+                                            {
+                                                <option value=0 selected> Buyer</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=0> Buyer</option>
+                                            }
+                                            @if (@Model.Role == 1)
+                                            {
+                                                <option value=1 selected> Seller</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=1> Supplier</option>
+                                            }
+                                            @if (@Model.Role == 2)
+                                            {
+                                                <option value=2 selected> Admin</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=2> Admin</option>
+                                            }   
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <button type="submit" class="btn btn-success" id="btnSubmit">Update</button>
+                                    </div>
+                                </div>
+
+                                <div class="space space-8"></div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script>
+    function ValidateEmail() {
+        var email = document.getElementById('email').value;
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            url: '../validateEmail',
+            data: { Email: email },
+            //traditional: true,
+            success: function (response) {
+                if (response == 0) {
+                    $("#msg").html("Email already exist, please try another one!");
+                    $("#msg").addClass("text-danger");
+                    $(':input[type="submit"]').prop('disabled', true);
+                } else {
+                    $("#msg").removeClass("text-danger");
+                    $("#msg").addClass("text-success");
+                    $("#msg").html("Congrates, Email is available.");
+                    $(':input[type="submit"]').prop('disabled', false);
+                    return trim(this);
+                }
+            },
+            error: function (response) { alert('Error'); }
+
+        });
+    }
+
+    $("#email").on({
+        keydown: function (e) {
+            if (e.which === 32)
+                return false;
+        },
+        change: function () {
+            this.value = this.value.replace(/\s/g, "");
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+    function trim(el) {
+        el.value = el.value.
+            replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+            replace(/[ ]{2,}/gi, " ").       // replaces multiple spaces with one space
+            replace(/\n +/, "\n");           // Removes spaces after newlines
+        return;
+    };
+</script>
+
+

@@ -1,0 +1,463 @@
+﻿
+@{
+    ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FindingYouSupplier.Helping_Classes
+<style>
+    .panel {
+        border-radius: 0px;
+    }
+
+    .panel-warning > .panel-heading {
+        background-color: #ffd700;
+        color: white;
+        border-color: #CC3300;
+    }
+
+    .panel-danger > .panel-heading {
+        background-color: #ff0000;
+        color: white;
+        border-color: #ff0000;
+    }
+
+    .panel-danger .panel-footer .btn-success {
+        background-color: #ff0000 !important;
+        color: white;
+        border-color: #ff0000 !important;
+    }
+
+        .panel-danger .panel-footer .btn-success:hover {
+            background-color: rgba(255,0,0,0.7) !important;
+            color: white;
+            border-color: #ff0000 !important;
+        }
+
+    .panel-info .panel-footer .btn-success {
+        background-color: #0612A6 !important;
+        color: white;
+        border-color: #0612A6 !important;
+    }
+
+        .panel-info .panel-footer .btn-success:hover {
+            background-color: rgba(6,18,166,0.7) !important;
+            color: white;
+            border-color: #0612A6 !important;
+        }
+
+    .panel-warning .panel-footer .btn-success {
+        background-color: #ffd700 !important;
+        color: #003366;
+        border-color: #ffd700 !important;
+    }
+
+        .panel-warning .panel-footer .btn-success:hover {
+            background-color: rgba(255,215,0,0.7) !important;
+            color: #003366;
+            border-color: #ffd700 !important;
+        }
+
+    .panel-success > .panel-heading {
+        background-color: #009900;
+        color: white;
+        border-color: #009900;
+    }
+
+    .panel-info > .panel-heading {
+        background-color: #0612A6;
+        color: white;
+        border-color: #0612A6;
+    }
+
+    
+</style>
+<div class="container">
+    <br />
+    <br />
+   <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <p></p>
+                    <p></p>
+                    <br />
+                    <br />
+                    <br />
+                    <h5>
+                        Please find answers to your frequently asked questions on this page, such as how to begin your journey by registering as an Entrepreneur, or listing your wholesale company and registering as Trade Supplier. You may also wish to know how to upload your products, edit products etc, well take you step by step through the simple process.
+                    </h5>
+                    <br />
+                    <a href="@Url.Action("Packages","Home", new { Id = StringCipher.Base64Encode("3") } )" class="btn btn-default">Join Now</a>
+                </div>
+                <div class=" col-md-5 col-sm-5 col-xs-12">
+                    <img src="~/Content/Images/help.png" width="300" height="400" />
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <h3 class="text-center" style="text-decoration:underline;">Entrepreneurs FAQ's</h3>
+        <div class="panel-group" id="faqAccordion">
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: What are the advantages to register as an Entrepreneur?</a>
+                    </h4>
+                </div>
+                <div id="question0" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            By registering as an Entrepreneur you will be able to access unlimited suppliers and view all there listed products.  Furthermore, you will have the advantages to contacting Trade Suppliers direct as their information will be visible for you to view.
+                            If you are an amateur in this business, we would be more than happy to assist you set up your online business. Simply view the articles on the Get Started Page for helpful hints and tips to lead you in the right direction. Or feel free to contact us for advise and guidance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: How can I register as an Entrepreneur?</a>
+                    </h4>
+                </div>
+                <div id="question1" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            Please follow the below steps.<br /><br />
+
+                            > Click the Register Here button<br />
+                            > Fill out your name, address and other details<br />
+                            > Choose your payment option<br />
+                            > Submit your profile<br />
+                            A member of the team would then authorise your profile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: How do I know the Trade Supplier is legit?</a>
+                    </h4>
+                </div>
+                <div id="question2" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            Finding You Suppliers has various stages of registered suppliers. The best suppliers to contact are the ones that show the Verified Supplier logo. This indicates that important company documents have been checked, and that the business has been legally registered. Also we have had some point of contact personally with the supplier whilst they have registered. The logo confirms that the person associated with the listing has been employed by the supplier and can represent the company.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <h3 class="text-center" style="text-decoration:underline;">Trade Suppliers FAQ's</h3>
+        <br />
+        <div class="panel-group" id="faqAccordion">
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: Why should I register as a Trade Supplier?</a>
+                    </h4>
+                </div>
+                <div id="question4" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            Registering as a Trade Supplier will enable you to showcase your products to registered Entrepreneurs, that would like to resell them for you. You will also benefit of your contact details being visible on your profile, so that potential Entrepreneurs that are interested in reselling your products, can get in contact with you direct. Furthermore, your products will also be posted on our social media pages, so that they would be views by our endless followers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: What are the benefits of all the supplier packages?</a>
+                    </h4>
+                </div>
+                <div id="question5" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            We have various packages to suit your requirements.<br />
+                            Should you opt to register for the Golden membership, you would exclusively and instantly receive the Verified supplier icon on your profile. By having the Verified pass on your account, you will instantly gain trust from Entrepreneurs browsing suppliers to work with.
+                            <br /><br />
+                            Here are the benefits for both packages:
+                            <br /><br />
+                            <strong style="color: #337AB7;">Silver Trade Supplier</strong><br />
+                            * Get On The Suppliers Directory<br />
+                            * Manage & Edit Your Company Profile, Product Listings & Prices<br />
+                            * Receive Buyer Enquiries<br />
+                            * Boost Your Sales By Getting New Customers<br />
+                            <br /><br />
+                            <strong style="color: #337AB7;">Golden Trade Supplier</strong><br />
+                            * Get On The Elite Position In UK The Suppliers Directory<br />
+                            * Manage & Edit Your Company Profile, Product Listings & Prices<br />
+                            * Upload Unlimited Products<br />
+                            * Get the Verified Supplier Pass On Your Profile<br />
+                            * Receive Buyer Enquiries from Registered and Non Registered Customers<br />
+                            * Boost Your Sales By Getting New Customers<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question6">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: How do I register my company profile?</a>
+                    </h4>
+                </div>
+                <div id="question6" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            Please follow the below steps.
+                            <br /><br />
+                            > Click the any Register Here button<br />
+                            > Fill out your name, address and company details<br />
+                            > Choose your payment option<br />
+                            > Submit your profile<br />
+                            A member of the team would then authorise your profile. You can then write out your company profile, add your contact information for customers to directly get in contact with you and upload unlimited products
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question7">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: How do I list my products?</a>
+                    </h4>
+                </div>
+                <div id="question7" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            Please follow the below steps.
+                            <br /><br />
+                            > Login in to your account<br />
+                            > You will see your name appear on the top right side<br />
+                            > Click on the drop down box with your name on it<br />
+                            > Click My Account<br />
+                            > Click Edit Profile<br />
+                            > Click Upload Products
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question8">
+                    <h4 class="panel-title">
+                        <a href="#" class="ing">Q: How do I edit my company profile?</a>
+                    </h4>
+                </div>
+                <div id="question8" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <h5><span class="label label-primary">Answer</span></h5>
+                        <p>
+                            Please follow the below steps.
+                            <br /><br />
+                            > Login in to your account<br />
+                            > You will see your name appear on the top right side<br />
+                            > Click on the drop down box with your name on it<br />
+                            > Click My Account<br />
+                            > Click Edit Profile
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <h3 class="text-center" style="text-decoration:underline;">Packages</h3>
+        <br />
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="text-center">UK & International Buyers</h4>
+                    <p class="text-center">Entrepreneur Membership</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead" style="font-size:30px"><strong>£19/Month</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Unlimited Events
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Contact other Unlimited Suppliers
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> View Wholesale & RRP Prices
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get the Latest Offers Sent To You
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Discover the Hottest Must Have Deals on the Market
+                    </li>
+                </ul>
+                <div class="panel-footer"><center> <a class="btn btn-md btn-success" href="@Url.Action("Signup", "Auth", new { package = StringCipher.Base64Encode("Silver_Buyer") })">Join Now</a></center> </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="text-center"> UK & International Buyers</h4>
+                    <p class="text-center"> Entrepreneur Membership</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead" style="font-size:30px"><strong>£49/6 Months</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Unlimited Events
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Contact other Unlimited Suppliers
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> View Wholesale & RRP Prices
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get the Latest Offers Sent To You
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Discover the Hottest Must Have Deals on the Market
+                    </li>
+                </ul>
+                <div class="panel-footer"><center> <a class="btn btn-md btn-success" href="@Url.Action("Signup", "Auth", new { package = StringCipher.Base64Encode("Golden_Buyer") })">Join Now</a></center> </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="text-center"> Silver UK Supplier</h4>
+                    <p class="text-center"> Trade Supplier Membership</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead" style="font-size:30px"><strong>£99/Year</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get On The Suppliers Directory
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Manage & Edit Your Company Profile, Product Listings & Prices
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Receive Buyer Enquiries
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Boost Your Sales By Getting New Customers
+                    </li>
+                </ul>
+                <br /><br />
+                <div class="panel-footer"> <center><a class="btn btn-md btn-success" href="@Url.Action("Signup", "Auth", new { package = StringCipher.Base64Encode("Silver_UK_Supplier") })">Join Now</a></center> </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="text-center"> Silver International Supplier</h4>
+                    <p class="text-center"> Trade Supplier Membership</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead" style="font-size:30px"><strong>£99/Year</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get On The Suppliers Directory
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span>  Manage & Edit Your Company Profile, Product Listings & Prices
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Receive Buyer Enquiries
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Boost Your Sales By Getting New Customers
+                    </li>
+                </ul>
+                <br /><br /><br /><br /><br /><br /><br /><br />
+                <div class="panel-footer"><center><a class="btn btn-md btn-success" href="@Url.Action("Signup", "Auth", new { package = StringCipher.Base64Encode("Silver_International_Supplier") })">Join Now</a></center>  </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h4 class="text-center">Golden UK Supplier</h4>
+                    <p class="text-center">Trade Supplier Membership</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead" style="font-size:30px"><strong>£149/Year</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get On The Elite Position In UK The Suppliers Directory
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span>  Manage & Edit Your Company Profile, Product Listings & Prices
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Upload Unlimited Products
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get the Verified Supplier Pass On Your Profile
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Receive Buyer Enquiries
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Boost Your Sales By Getting New Customers
+                    </li>
+                </ul>
+                <br /><br /><br />
+                <div class="panel-footer"><center> <a class="btn btn-md btn-success" href="@Url.Action("Signup", "Auth", new { package = StringCipher.Base64Encode("Golden_UK_Supplier") })">Join Now</a></center> </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h4 class="text-center">Golden International Supplier</h4>
+                    <p class="text-center">Trade Supplier Membership</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead" style="font-size:30px"><strong>£149/Year</strong></p>
+                </div>
+                <ul class="list-group list-group-flush" style="height:350px;">
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get On The Elite Position In UK The Suppliers Directory
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Manage & Edit Your Company Profile, Product Listings & Prices
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Upload Unlimited Products
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Get the Verified Supplier Pass On Your Profile
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Receive Buyer Enquiries
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-ok text-success"></span> Boost Your Sales By Getting New Customers
+                    </li>
+                </ul>
+                <div class="panel-footer"><center> <a class="btn btn-md btn-success" href="@Url.Action("Signup", "Auth", new { package = StringCipher.Base64Encode("Golden_International_Supplier") })">Join Now</a></center> </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

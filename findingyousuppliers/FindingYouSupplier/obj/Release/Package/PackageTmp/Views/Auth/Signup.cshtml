@@ -1,0 +1,329 @@
+﻿
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="container">
+    <br />
+    <br />
+    <div class="row">
+        <h1 class="text-center"><strong>Sign Up</strong></h1>
+
+        <form class="form" method="post" action="@Url.Action("PostRegister","Auth")">
+            <input type="hidden" name="package" value="@ViewBag.package" />
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="page-header">User Information:</h4>
+                    <div class="form-group">
+                        <label class="control-label">Name :</label>
+                        <input type="text" onchange="return trim(this)" name="Name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email :</label>
+                        <input type="email" onkeydown="return trim(this)" onchange="ValidateEmail()" id="email" name="Email" class="form-control" required />
+                        <label id="msg"></label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password :</label>
+                        <input type="password" onchange="return trim(this)" name="Password" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Phone :</label>
+                        <input type="text" onchange="return trim(this)" name="Phone" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Website Address :</label>
+                        <input type="text" onchange="return trim(this)" pattern="^(https?://www?\.)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" name="Website_Address" class="form-control" required />
+                        <span>www.abc.com</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Country :</label>
+                        <input type="text" onchange="return trim(this)" name="Country" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Promo Code :</label>
+                        <input type="text" onkeydown="return trim(this)" onchange="ValidatePromoCode()" id="promocode" name="promoCode" class="form-control" />
+                        <label id="promo"></label>
+                    </div>
+                </div>
+
+
+                @if (ViewBag.package == "Silver_UK_Supplier" || ViewBag.package == "Golden_UK_Supplier" || ViewBag.package == "Silver_International_Supplier" || ViewBag.package == "Golden_International_Supplier")
+                {
+                    <div class="col-md-6">
+                        <h4 class="page-header">Company Information:</h4>
+                        <div class="form-group">
+                            <label class="control-label">Comapny Name :</label>
+                            <input type="text" onchange="return trim(this)" name="Company_Name" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Company Address :</label>
+                            <input type="text" onchange="return trim(this)" name="Company_Address" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Company Number :</label>
+                            <input type="text" onchange="return trim(this)" name="Company_Number" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">VAT Registration Number :</label>
+                            <input type="text" onchange="return trim(this)" name="VAT_Registration_Number" class="form-control" required />
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="page-header"><span style="color:red;">* </span>Payment:</h4>
+                    <div class="form-group">
+                        <div id="payment-form"></div>
+                    </div>
+                    <div class="form-group">
+                        <p>By continuing you agree to Findingyousuppliers <a href="#" data-toggle="modal" data-target="#myModal"><strong>Terms and Conditions</strong></a>.</p>
+                    </div>
+                    <div class="form-group">
+                        <p>Findingyousuppliers comply with <a href="#" data-toggle="modal" data-target="#myModal1"><strong>GDPR</strong></a>.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Register" class=" btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0612A6 !important;">
+                <button type="button" class="close" data-dismiss="modal" style="color: white !important;">&times;</button>
+                <h4 class="modal-title" style="color: white;"><strong>Terms & Conditions</strong></h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong>Finding You Suppliers Terms & Conditions</strong>
+                    <br /><strong>Last Updated: 14/02/2018</strong>
+                    <br /><br />Welcome to the Finding You Suppliers Terms of Use Agreement.
+                    <br />This Agreement indicates the terms and conditions that are utilised whilst making use of the Finding You Suppliers web site and the provided services that are available under the domain www.findingyousuppliers.com. This Agreement of Terms  is entered into between you as the user of the Site and Finding You Suppliers.
+                    <br /><br /><strong>1	Acceptance of Terms and Conditions.</strong>
+                    <br /><strong>1.1</strong>
+                    <br />This Agreement states that, a “User” of the Site Finding You Suppliers is a registered and paying member at findingyousuppliers.com, and also can be someone who is just browsing the Site.
+                    <br /><strong>1.2</strong>
+                    <br />By using this Site, you accept to agree that www.findingyousuppliers.com can be changed, upgraded and modified at any given time.
+                    <br /><strong>1.3</strong>
+                    <br />You hereby agree and accept that Terms & Conditions maybe amended at any time on this Site.
+                    <br /><br /><strong>2	Membership Services</strong>
+                    <br /><strong>2.1</strong>
+                    <br />You understand that you can get free access to certain features on this Site. Also maybe authorised complimentary membership if and when discussed with a team member of Finding You Suppliers.
+                    <br /><strong>2.2</strong>
+                    <br />Once you have registered to become a member in the Entrepreneur or Trade Supplier zone, your membership payment would be automatically renewed, unless you have emailed support@findingyousuppliers.com and have advised that you do not wish to be on a rolling contract.
+                    <br /><strong>2.3</strong>
+                    <br />Finding You Suppliers Ltd hold the rights to refuse Entrepreneur or Trade Supplier membership to any User for whatever the reason maybe.
+                    <br /><br /><strong>3	General Users of the Site</strong>
+                    <br /><strong>3.1</strong>
+                    <br />All content on www.findingyousuppliers.com is provided by an authorised member of the Finding You Suppliers Ltd team.
+                    <br /><strong>3.2</strong>
+                    <br />You hereby agree that the sole purpose of you browsing and using www.findingyousuppliers.com is finding Trade Suppliers or promoting your products and services on here to attract Entrepreneurs. Your intentions are not to copy, recreate or duplicate any listings, images, data, information and text. Exploiting text, information, listings, images and videos from www.findingyousuppliers.com will result in us taking legal action against you.
+                    <br /><strong>3.3</strong>
+                    <br />Queries, messages, information and orders made to the Trade Supplier’s has no connection with Finding You Suppliers Ltd. This is strictly under the discretion between the Entrepreneur and the Trade Supplier.
+                    <br /><strong>3.4</strong>
+                    <br />By using this Site, you accept to agree that www.findingyousuppliers.com can be changed, upgraded and modified at any given time. Finding You Suppliers Ltd reserves the right to introduce new features for Users or change existing features without any form of notice.
+                    <br /><strong>3.5</strong>
+                    <br />Users accept that Finding You Suppliers Ltd will not be held responsible if www.findingyousuppliers.com Site slows down at any point, files are disrupt, changes of any features or termination of Site, errors or limited access arising from the Site.
+                    <br /><strong>3.6</strong>
+                    <br />Finding You Suppliers Ltd gives permission to third party businesses to advertise on www.findingyousuppliers.com if this has been authorised by written permission from a member of Finding You Suppliers Ltd admin.
+                    <br /><strong>3.7</strong>
+                    <br />Under any circumstances no User shall attempt to gain unauthorised admin access to the networks or systems of www.findingyousuppliers.com.
+                    <br /><br /><strong>4	Registered Users</strong>
+                    <br /><strong>4.1</strong>
+                    <br />To become a Registered User, you must fill out either one of the Entrepreneur packages, or the Trade Supplier packages online.
+                    <br /><strong>4.2</strong>
+                    <br />Should any Registered Users breech this agreement, your account will be terminated.
+                    <br /><strong>4.3</strong>
+                    <br />www.findingyousuppliers.com has the right to refuse a registered mem-ber for whatever reason and deactivate the account.
+                    <br /><strong>4.4</strong>
+                    <br />Finding You Suppliers may send Registered Users emails from time to time. Please Unsubscribe if you wish to no longer receive our emails.
+                    <br /><strong>4.5</strong>
+                    <br />From the day you sign up to the Entrepreneur Memberships Packages or any of the Trade Supplier Membership Packages or International Trade Supplier Membership Packages, you have 7 days to cancel your membership and receive a full a refund by emailing us on sup-port@findingyousuppliers.com. After the 7 day period is over, your payment will be none refundable.
+                    <br /><strong>4.6</strong>
+                    <br />As a Trade Supplier or International Trade Supplier, If you sign up for a Promotional Free 1 Month Trial, Free 2 Month Trial or Free 3 Month Trail you will automatically be charged for the Silver Membership Package after the free trial ends, unless you have emailed us prior to your free membership trial ending to cancel your membership on support@findingyousuppliers.com.
+                    <br /><br /><strong>End of Agreement</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">I Agree</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- GDPR Modal -->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0612A6 !important;">
+                <button type="button" class="close" data-dismiss="modal" style="color: white !important;">&times;</button>
+                <h4 class="modal-title" style="color: white;"><strong>General Data Protection Regulation</strong></h4>
+            </div>
+            <div class="modal-body">
+                <strong>General Data Protection Regulation</strong>
+                <br /><strong>Last Updated: 12/09/2018</strong>
+                <br /><br /><h4>
+                    Information Protection
+                </h4>
+                Your information that we collect in which you enter when signing up for your chosen membership package is protected and we do not under any circumstances share your information. Such as your Name, Email Address, Telephone Number, Website Address, Country, Company Name, Company Address, Company Number and VAT Registration Number. We do not save Payment Details. All payment is gone through via Braintree.
+                It is however important for you to protect your passwords on unauthorised computers as we do not save your passwords.
+                We are fully compliant with General Data Protection Regulation (GDPR). This is a legal framework that sets guidelines for the collection and processing of personal information of individuals within the European Union (EU). ... GDPR came into effect across the EU on May 25, 2018.
+
+                <br><br /><h4>Data Sharing</h4>
+                We do not share any Entrepreneur data. However due to Trade Suppliers products and services advertising we may if need be send it to some of our third–party processors, who provide marketing analysis for us have sub-processing activities outside the UK. Therefor your data may possibly be passed out of Europe where it may be subject to less strict data protection laws. We will however endeavour to ensure that it is subject to appropriate data security at all times.
+
+                <br><br /><h4>How Long Is Data Stored</h4>
+                As we committed to providing you with the best possible service, we like to keep a record of our clients. However if we do not hear back from you in 10 years time we sadly delete your information from all our systems. If you do not wish for your records to be stored on our system for that length of time, you may email us on support@findingyousuppliers.com, confirming to remove your details from our systems. This would be done immediately.
+
+                <br><br /><h4>Is Data Used For Marketing Purposes</h4>
+                We wish to keep you updated with our products and services which is why we use the following marketing strategies:
+
+                <br><br><b>-	Social Media</b>
+                Here at Finding You Suppliers Ltd, we love social media marketing. It is a great way for us to reach out to our broad audience, whilst keeping you updated with new products, services and great companies that want to showcase there products to our followers. You may see adverts pop up from us on social media that are tailored to your interests. Depending on your settings or the privacy policies social media and messaging services like Facebook, Instagram or Twitter, you might give third parties permission to access information from those accounts or services.
+
+                <br><br><b>-	Remarketing</b>
+                Finding You Suppliers uses remarketing tracking cookies and conversion pixels from vendors such as Google, Facebook, Twitter, LinkedIn and Pinterest to present special offers to you for our products or services over the Google Content Network and via social networks.  This just means you may see an ad for one of our products or services as a result of visiting our website. In addition, Finding You Suppliers uses custom audiences based on emails of subscribers and customers. This allows us to present special offers for our products to you via Facebook and Instagram.  However, your personally identifiable information is not used by any remarketing service other than to present special offers and adverts showcasing any new products and services from us. If you want to opt out of any of these, you can do so here:<br>
+                Twitter: Opt-out of Twitter remarketing here.<br>
+                Facebook: Opt-out of Facebook remarketing here.<br>
+                LinkedIn: Opt-out of LinkedIn remarketing here.<br>
+                Pinterest: Opt-out of Pinterest remarketing here.<br>
+                Google: Opt-out of Google remarketing here.<br>
+                Epsilon: Opt-out of Epsilon remarketing here.<br>
+                AWIN: Opt-out of AWIN here.<br>
+                Sub2tech: Opt-out of Sub2tech here.<br>
+
+                <br><br><h4>-	Messaging Services</h4>
+                By sending a start message to Finding You Suppliers (here in after referred to as – Sender) I agree with respect to Art. 6 Abs.1 lit. a GDPR that Sender has my permission to use my personal data (e.g. first and last name, phone number, messenger ID, profile image, messages) for direct communication and the required data processing, based on the respective messenger. To use this service, an existing messenger account with the respective provider is required.The possible messenger service providers are:<br>
+                Whatsapp: WhatsApp, Inc., 1601 Willow Road, Menlo Park, California 94025, USA with its privacy policy described at https://www.whatsapp.com/legal/#privacy-policy<br>
+                Facebook Messenger: Facebook Inc., 1601 S. California Ave, Palo Alto, CA 94304, USA with its privacy policy described at facebook.com/about/privacy<br>
+                Telegram: Telegram Messenger LLP 71-75 Shelton Street, Covent Garden, London, United Kingdom with its privacy policy described at https://telegram.org/privacy.<br>
+                Insta News: Pylba Inc., 314 27th Avenue, San Mateo, CA, 94403, USA with its privacy policy described at pylba.com/privacy<br>
+                I acknowledge that the respective provider might receive personal data (including communication meta data) that might be processed at servers located in countries outside of the EU (e.g. USA) that do not guarantee the same level of data protection as that practiced in the EU. Whatsapp Inc and Facebook Inc are certified under the Privacy Shield Agreement and thus guarantee compliance with European data protection regulations. Additional information is described in the above privacy policies of the respective messengers. Sender has no detailed knowledge about or influence on the respective providers.Your agreement to this data processing can be revoked at any time by sending “stop” in the respective messenger.To delete all data that is stored by our technical service provider, please send a message with "delete all data" through your messenger.  Sender uses the technical service provider WhatsBroadcast GmbH, Herzog-Heinrich-Str. 9, 80336 Munich, Germany as data processor for this messenger service.
+                <br>
+                <br><br /><h4>How To Unsubscribe From Marketing Communications</h4>
+                Finding You Suppliers want you to have as much control over your personal information as possible, so we want you to know that you can do this in the following ways –<br>
+                • Whenever you are asked to fill in a form on the website, look for the box that you can click to indicate that you do not want the information to be used for marketing purposes.<br>
+                • If you have previously signed up to our email newsletters and want to unsubscribe at any point click on the ‘Unsubscribe’ link in any email or log into your account to change your preferences.<br>
+                We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">I Comply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4 log-level="warn"></script>
+<!-- Load the client component. -->
+<script src="https://js.braintreegateway.com/web/3.14.0/js/client.min.js"></script>
+<!-- Load the PayPal Checkout component. -->
+<script src="https://js.braintreegateway.com/web/3.14.0/js/paypal-checkout.min.js"></script>
+<div id="paypal-button"></div>
+<!-- Load the Client component. -->
+<script src="https://js.braintreegateway.com/web/3.14.0/js/client.min.js"></script>
+<!-- Load the Hosted Fields component. -->
+<script src="https://js.braintreegateway.com/web/3.14.0/js/hosted-fields.min.js"></script>
+<script src="https://js.braintreegateway.com/js/braintree-2.32.0.min.js"></script>
+<script>
+braintree.setup('@System.Web.HttpContext.Current.Session["token"]', "dropin", {
+       container: "payment-form"
+   });
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script>
+    function ValidateEmail() {
+        var email = document.getElementById('email').value;
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            url: '../Admin/validateEmail',
+            data: { Email: email },
+            //traditional: true,
+            success: function (response) {
+                if (response == 0) {
+                    $("#msg").html("Email already exist, please try another one!");
+                    $("#msg").addClass("text-danger");
+                    $(':input[type="submit"]').prop('disabled', true);
+                } else {
+                    $("#msg").removeClass("text-danger");
+                    $("#msg").addClass("text-success");
+                    $("#msg").html("Congrates, Email is available.");
+                    $(':input[type="submit"]').prop('disabled', false);
+                    return trim(this);
+                }
+            },
+            error: function (response) { alert('Error'); }
+
+        });
+    }
+
+    function ValidatePromoCode() {
+        var promocode = document.getElementById('promocode').value;
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            url: '../Admin/validatePromoCode',
+            data: { PromoCode: promocode },
+            //traditional: true,
+            success: function (response) {
+                if (response == "-1") {
+                    $("#promo").html("Invalid Promo Code! If you continue you will be charged.");
+                    $("#promo").addClass("text-danger");
+
+                }
+                else if (response == "-2") {
+                    $("#promo").removeClass("text-danger");
+                    $("#promo").addClass("text-info");
+                    $("#promo").html("You are getting registered without any Promo Code. If you continue you will be charged.");
+
+                    return trim(this);
+                }
+                else {
+                    $("#promo").removeClass("text-danger");
+                    $("#promo").addClass("text-success");
+                    $("#promo").html("Congrates, Promo Code is valid. You are getting a trial of " + response + " months");
+
+                    return trim(this);
+                }
+            },
+            error: function (response) { alert('Error'); }
+
+        });
+    }
+
+    $("#email").on({
+        keydown: function (e) {
+            if (e.which === 32)
+                return false;
+        },
+        change: function () {
+            this.value = this.value.replace(/\s/g, "");
+        }
+    });
+
+</script>
+<script type="text/javascript">
+    function trim(el) {
+        el.value = el.value.
+            replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+            replace(/[ ]{2,}/gi, " ").       // replaces multiple spaces with one space
+            replace(/\n +/, "\n");           // Removes spaces after newlines
+        return;
+    };
+</script>

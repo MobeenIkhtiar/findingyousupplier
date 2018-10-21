@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FindingYouSupplier.Models
+@using FindingYouSupplier.Helping_Classes
+@using FindingYouSupplier.BL
+@using FindingYouSupplier.DAL
+
+<style type="text/css">
+    .list-group {
+        border-radius: 0px !important;
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .list-group .active {
+        background-color: #0612A6;
+        color: white;
+        border-color: #0612A6;
+    }
+
+        .list-group .active:hover {
+            background-color: #000;
+            color: white;
+            border-color: #000;
+        }
+    body {
+        background-color: white;
+    }
+
+    td {
+        height: 50px;
+    }
+</style>
+<div class="container">
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="@Url.Action("Index", "Account")" class="list-group-item active">
+                    <h4><strong>My Account</strong></h4>
+                </a>
+                <a href="@Url.Action("EditProfile", "Account")" class="list-group-item">Edit Profile</a>
+                @{
+                    SessionDTO sdto = new SessionDTO();
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("EditCompanyProfile", "Account")" class="list-group-item">Edit Comapny Profile</a>
+                }
+                <a href="@Url.Action("ChangePassword", "Account")" class="list-group-item">Change Password</a>
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("AddProduct", "Account")" class="list-group-item">Add Product</a>
+                    <a href="@Url.Action("ViewProducts", "Account")" class="list-group-item">View Products</a>
+                }
+                @if (sdto.getRole() == 0)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="table-responsive">
+                <div class="col-md-12">
+                    <table id="table_id" class="display table">
+                        <thead>
+                            <tr>
+                                <th>Contact Information</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                SessionDTO s = new SessionDTO();
+                            }
+                            @if (s.getRole() == 0)
+                            {
+                                foreach (Message m in ViewBag.messages)
+                                {
+                                    User u = new UserBL().getUserById(m.To_User_Id);
+                                    <tr>
+                                        <td style="width:30%;">
+                                            <p><strong>Name: </strong> &nbsp;&nbsp; @u.Name</p>
+                                            <p><strong>Email: </strong> &nbsp;&nbsp; @u.Email</p>
+                                            <p><strong>Phone: </strong> &nbsp; @u.Phone</p>
+                                        </td>
+                                        <td>
+                                            @m.Msg<br /><br />
+                                            <p style="font-size: 11px;">@m.Date</p>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                foreach (Message m in ViewBag.messages)
+                                {
+                                    <tr>
+                                        <td style="width:30%;">
+                                            <p><strong>Name: </strong> &nbsp;&nbsp; @m.User.Name</p>
+                                            <p><strong>Email: </strong> &nbsp;&nbsp; @m.User.Email</p>
+                                            <p><strong>Phone: </strong> &nbsp; @m.User.Phone</p>
+                                        </td>
+                                        <td>
+                                            @m.Msg<br /><br />
+                                            <p style="font-size: 11px;">@m.Date</p>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+
+            "bSort": false,
+        });
+    });
+</script>

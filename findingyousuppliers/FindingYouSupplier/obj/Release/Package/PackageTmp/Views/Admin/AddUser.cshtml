@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using FindingYouSupplier.Models
+
+<div class="main-content-inner">
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="@Url.Action("Index","Admin")">Dashboard</a>
+            </li>
+            <li class="active">Add User</li>
+        </ul><!-- /.breadcrumb -->
+
+    </div>
+
+    <div class="page-content">
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="widget-box">
+                    <form action="@Url.Action("SaveUser","Admin")" method="post">
+                        <div class="widget-header">
+                            <h4 class="widget-title">Add User</h4>
+                            <span class="widget-toolbar">
+                                <a href="#" data-action="collapse">
+                                    <i class="ace-icon fa fa-chevron-up"></i>
+                                </a>
+                                <a href="#" data-action="close">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <label for="id-date-picker-1">Name</label>                               
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Name" required />                                        
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+
+                                <label for="id-date-picker-1">Email</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        @if (ViewBag.error == null)
+                                        {
+                                            /**/
+                                        }
+                                        else
+                                        {
+                                            <label class="text-danger">@ViewBag.error</label>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onkeydown="return trim(this)" onchange="ValidateEmail()" class="form-control" id="email" type="email" name="Email" required />
+                                        <label id="msg"></label>
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Password</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="password" name="Password" required />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Phone</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Phone" required />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Website Address</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" pattern="^(https?://www?\.)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" type="text" name="Website_Address" required />
+                                        <span>www.abc.com</span>
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Country</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Country" required />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Company Name</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Company_Name" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Company Number</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Company_Number" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Company Address</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="Company_Address" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">VAT Registration Number</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input onchange="return trim(this)" class="form-control" type="text" name="VAT_Registration_Number" />
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <label for="id-date-picker-1">Role</label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <select class="form-control" name="Role" required>
+                                            <option selected value=""> Select Role</option>
+                                            <option value=0> Buyer</option>
+                                            <option value=1> Supplier</option>                                         
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="space space-8"></div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <input type="submit" class="btn btn-success" id="btnSubmit" />
+                                    </div>
+                                </div>
+
+                                <div class="space space-8"></div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script>
+    function ValidateEmail() {
+        var email = document.getElementById('email').value;
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            url: 'validateEmail',
+            data: { Email: email },
+            //traditional: true,
+            success: function (response) {
+                if (response == 0) {
+                    $("#msg").html("Email already exist, please try another one!");
+                    $("#msg").addClass("text-danger");
+                    $(':input[type="submit"]').prop('disabled', true);
+                } else {
+                    $("#msg").removeClass("text-danger");
+                    $("#msg").addClass("text-success");
+                    $("#msg").html("Congrates, Email is available.");
+                    $(':input[type="submit"]').prop('disabled', false);
+                    return trim(this);
+                }
+            },
+            error: function (response) { alert('Error'); }
+
+        });
+    }
+
+    $("#email").on({
+        keydown: function (e) {
+            if (e.which === 32)
+                return false;
+        },
+        change: function () {
+            this.value = this.value.replace(/\s/g, "");
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+    function trim(el) {
+        el.value = el.value.
+            replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+            replace(/[ ]{2,}/gi, " ").       // replaces multiple spaces with one space
+            replace(/\n +/, "\n");           // Removes spaces after newlines
+        return;
+    };
+</script>

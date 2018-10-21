@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Enquiries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FindingYouSupplier.Models
+@using FindingYouSupplier.Helping_Classes
+<style>
+    .list-group {
+        border-radius: 0px !important;
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .list-group .active {
+        background-color: #0612A6;
+        color: white;
+        border-color: #0612A6;
+    }
+
+        .list-group .active:hover {
+            background-color: #000;
+            color: white;
+            border-color: #000;
+        }
+</style>
+<div class="container">
+    <br />
+    <br />
+    <p class="text-center" style="font-size: 22px; color: #82CA9C;"><strong>@ViewBag.message</strong></p>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="@Url.Action("Index", "Account")" class="list-group-item active">
+                    <h4><strong>My Account</strong></h4>
+                </a>
+                <a href="@Url.Action("EditProfile", "Account")" class="list-group-item">Edit Profile</a>
+                @{
+                    SessionDTO sdto = new SessionDTO();
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("EditCompanyProfile", "Account")" class="list-group-item">Edit Comapny Profile</a>
+                }
+                <a href="@Url.Action("ChangePassword", "Account")" class="list-group-item">Change Password</a>
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("AddProduct", "Account")" class="list-group-item">Add Product</a>
+                    <a href="@Url.Action("ViewProducts", "Account")" class="list-group-item">View Products</a>
+                }
+                @if (sdto.getRole() == 0)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+                @if (sdto.getRole() == 1 || sdto.getRole() == 2)
+                {
+                    <a href="@Url.Action("Messages", "Account")" class="list-group-item">Enquiries</a>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div class="col-md-12" style="padding:10px;background-color:white;">
+                <h3 style="border-bottom:2px solid #000;">
+                    <strong> Company Profile</strong>
+                </h3>
+                <div class="col-md-6">
+                    <p><strong>Company Name:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Company_Name</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Company Number:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Company_Number</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Company Address:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Company_Address</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>VAT Registration Number:</strong> &nbsp; &nbsp; <span>@ViewBag.user.VAT_Registration_Number</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Country:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Country</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-12" style="padding:10px;background-color:white;border-bottom:3px solid #82CA9C; margin-bottom:15px;">
+                <h3 style="border-bottom:2px solid #000;">
+                    <strong> Supplier Profile</strong>
+                </h3>
+
+                <div class="col-md-6">
+                    <p><strong>Name:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Name</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Email:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Email</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Phone:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Phone</span></p><br />
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Website Address:</strong> &nbsp; &nbsp; <span>@ViewBag.user.Website_Address</span></p><br />
+                </div>
+                <br /><br /><br /><br />
+            </div>
+
+            <h2>
+                <strong>Submit Inquiry</strong>
+            </h2>
+            <div class="col-md-12 contact-form">
+                <form id="contact" method="post" action="@Url.Action("PostInquiry", "Account")" class="form" role="form">
+                    <input type="hidden" name="To_User_Id" value="@ViewBag.user.Id" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Name:</strong> &nbsp; &nbsp; <span>@sdto.getName()</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Email:</strong> &nbsp; &nbsp; <span>@ViewBag.email</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Phone:</strong> &nbsp; &nbsp; <span>@ViewBag.phone</span></p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="message" name="Msg" placeholder="Your Message" rows="4"></textarea>
+                            <br />
+                            <button class="btn btn-default pull-right" type="submit">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+
+
+
+

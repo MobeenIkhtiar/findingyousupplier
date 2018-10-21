@@ -1,0 +1,281 @@
+﻿@using FindingYouSupplier.Models
+@{
+    ViewBag.Title = "List Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+<div class="main-content-inner">
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="@Url.Action("Index","Admin")">Dashboard</a>
+            </li>
+            <li class="active">List Users</li>
+        </ul><!-- /.breadcrumb -->
+
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="header smaller lighter blue"><strong>List of Entrepreneurs</strong></h3>
+                <div class="clearfix">
+                    <div class="pull-right tableTools-container"></div>
+                </div>
+                @*<div class="table-header">
+                Results for "MentalNotes Submissions"
+            </div>*@
+
+                <!-- div.table-responsive -->
+                <!-- div.dataTables_borderWrap -->
+                <div class="table-responsive">
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Website Address</th>
+                                <th>Country</th>
+                                <th>Subscription Id</th>
+                                <th>Package</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (User u in ViewBag.buyers)
+                            {
+                                <tr>
+                                    <td>@u.Name</td>
+                                    <td>@u.Email</td>
+                                    <td>@u.Phone</td>
+                                    <td>@u.Website_Address</td>
+                                    <td>@u.Country</td>
+                                    <td>@u.Subscription_Id</td>
+                                    @if (@u.Package == "Silver_Buyer")
+                                    {
+                                        <td>Silver Buyer</td>
+                                    }
+                                    else if (@u.Package == "Golden_Buyer")
+                                    {
+                                        <td>Golden Buyer</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>Not Subscribed Yet</td>
+                                    }
+
+                                    @if (u.Is_Authorize == 0)
+                                    {
+                                        <td><a href="@Url.Action("ToggleUser", "Admin", new{ Id = u.Id })" class="btn btn-success">Authorize</a></td>
+
+                                    }
+                                    else
+                                    {
+                                        <td><a href="@Url.Action("ToggleUser", "Admin", new{ Id = u.Id })" class="btn btn-danger">Unauthorize</a></td>
+
+                                    }
+                                    <td>
+                                        <a href="@Url.Action("EditUser", "Admin", new { Id = u.Id })"><span class="fa fa-pencil"></span></a>
+                                        @*<a href="#"><span class="fa fa-trash"></span></a>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="header smaller lighter blue"><strong>List of UK Trade Suppliers</strong></h3>
+                <div class="clearfix">
+                    <div class="pull-right tableTools-container"></div>
+                </div>
+                @*<div class="table-header">
+                Results for "MentalNotes Submissions"
+            </div>*@
+
+                <!-- div.table-responsive -->
+                <!-- div.dataTables_borderWrap -->
+                <div class="table-responsive">
+                    <table id="dynamic-table1" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Website Address</th>
+                                <th>Country</th>
+                                <th>Company Name</th>
+                                <th>Company Number</th>
+                                <th>Company Address</th>
+                                <th>VAT Registration Number</th>
+                                <th>Subscription Id</th>
+                                <th>Package</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (User u in ViewBag.uksuppliers)
+                            {
+                                <tr>
+                                    <td>@u.Name</td>
+                                    <td>@u.Email</td>
+                                    <td>@u.Phone</td>
+                                    <td>@u.Website_Address</td>
+                                    <td>@u.Country</td>
+                                    <td>@u.Company_Name</td>
+                                    <td>@u.Company_Number</td>
+                                    <td>@u.Company_Address</td>
+                                    <td>@u.VAT_Registration_Number</td>
+                                    <td>@u.Subscription_Id</td>
+                                    @if (@u.Package == "Silver_UK_Supplier")
+                                    {
+                                        <td>Silver UK Supplier</td>
+                                    }
+                                    else if (@u.Package == "Golden_UK_Supplier")
+                                    {
+                                        <td>Golden UK Supplier</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>Not Subscribed Yet</td>
+                                    }
+                                    @if (u.Is_Authorize == 0)
+                                    {
+                                        <td><a href="@Url.Action("ToggleUser", "Admin", new{ Id = u.Id })" class="btn btn-success">Authorize</a></td>
+
+                                    }
+                                    else
+                                    {
+                                        <td><a href="@Url.Action("ToggleUser", "Admin", new{ Id = u.Id })" class="btn btn-danger">Unauthorize</a></td>
+
+                                    }
+                                    <td>
+                                        <a href="@Url.Action("EditUser", "Admin", new { Id = u.Id })"><span class="fa fa-pencil"></span></a>
+                                        @*<a href="#"><span class="fa fa-trash"></span></a>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="header smaller lighter blue"><strong>List of International Trade Suppliers</strong></h3>
+                <div class="clearfix">
+                    <div class="pull-right tableTools-container"></div>
+                </div>
+                <div class="table-responsive">
+                    <table id="dynamic-table2" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Website Address</th>
+                                <th>Country</th>
+                                <th>Company Name</th>
+                                <th>Company Number</th>
+                                <th>Company Address</th>
+                                <th>VAT Registration Number</th>
+                                <th>Subscription Id</th>
+                                <th>Package</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (User u in ViewBag.internationalsuppliers)
+                            {
+                                <tr>
+                                    <td>@u.Name</td>
+                                    <td>@u.Email</td>
+                                    <td>@u.Phone</td>
+                                    <td>@u.Website_Address</td>
+                                    <td>@u.Country</td>
+                                    <td>@u.Company_Name</td>
+                                    <td>@u.Company_Number</td>
+                                    <td>@u.Company_Address</td>
+                                    <td>@u.VAT_Registration_Number</td>
+                                    <td>@u.Subscription_Id</td>
+                                    @if (@u.Package == "Silver_International_Supplier")
+                                    {
+                                        <td>Silver International Supplier</td>
+                                    }
+                                    else if (@u.Package == "Golden_International_Supplier")
+                                    {
+                                        <td>Golden International Supplier</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>Not Subscribed Yet</td>
+                                    }
+                                    @if (u.Is_Authorize == 0)
+                                    {
+                                        <td><a href="@Url.Action("ToggleUser", "Admin", new{ Id = u.Id })" class="btn btn-success">Authorize</a></td>
+
+                                    }
+                                    else
+                                    {
+                                        <td><a href="@Url.Action("ToggleUser", "Admin", new{ Id = u.Id })" class="btn btn-danger">Unauthorize</a></td>
+
+                                    }
+                                    <td>
+                                        <a href="@Url.Action("EditUser", "Admin", new { Id = u.Id })"><span class="fa fa-pencil"></span></a>
+                                        @*<a href="#"><span class="fa fa-trash"></span></a>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>    
+</div>
+
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+
+<!-- page specific plugin scripts -->
+<script src="~/Content/Admin/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/Admin/assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="~/Content/Admin/assets/js/dataTables.buttons.min.js"></script>
+<script src="~/Content/Admin/assets/js/dataTables.select.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+        //initiate dataTables plugin
+        var myTable = $('#dynamic-table').DataTable({
+           // bAutoWidth: true,
+            "bSort": false,
+            "bPaginate": true,
+        });
+        var myTable1 = $('#dynamic-table1').DataTable({
+            "bSort": false,
+            "bPaginate": true,
+        });
+        var myTable2 = $('#dynamic-table2').DataTable({
+
+            "bSort": false,
+            "bPaginate": true,
+        });
+
+</script>
+
+
